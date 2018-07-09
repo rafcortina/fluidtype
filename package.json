@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "description": "It scales the font size so the text fits optimally within the container.",
   "main": "fluidtype.js",
+  "repository" :
+  { 
+    "type" : "git",
+    "url" : "https://github.com/rafcortina/fluidtype.git"
+  },
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --content-base src --hot --inline"
