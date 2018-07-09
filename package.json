@@ -1,0 +1,18 @@
+{
+  "name": "fluidtype",
+  "version": "0.1.0",
+  "description": "It scales the font size so the text fits optimally within the container.",
+  "main": "fluidtype.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development --content-base src --hot --inline"
+  },
+  "author": "Rafael Cortina",
+  "license": "MIT",
+  "devDependencies": {
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.15.1",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4"
+  }
+}
