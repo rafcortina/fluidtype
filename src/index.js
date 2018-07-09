@@ -5,7 +5,6 @@ var init = false;
 var units = "px";
 function setOptimalFontSize(elem, minFontSize, maxFontSize)
 {
-    
     var elemRect = elem.getClientRects()[0];
 
     var helper = elem.cloneNode(true);
@@ -66,7 +65,7 @@ function setOptimalFontSize(elem, minFontSize, maxFontSize)
     elem.style.fontSize = fontSize + units;
 
     helper.remove();
-    console.log("Iteration count: " + iterCount);
+    //console.log("Iteration count: " + iterCount);
 }
 
 
@@ -91,36 +90,27 @@ function onResize() {
 	}
 }
 
-function findItem(elem) {
 
-	for (var index in collection) {
-
-		if (elem === collection[index].elem) {
-			return collection[index];
-		}
-	}
-
-	return null;
-}
-
-function observe(records) {
-
-	var record = records[0];
-
-	var item = findItem(record.target);
-
-	if (item) {
-		processItem(item);
-	}
-}
-
-var _config = {attributes: true, childList: false, subtree: false};
-var _observer = new MutationObserver(observe);
-
+var _mousedown = false;
 function fluid(elements, min, max) {
 
 	if (!init) {
 		window.addEventListener("resize", onResize);
+        
+        window.addEventListener("mousedown", function(){
+            _mousedown = true;
+        }, false);
+
+        window.addEventListener("mousemove", function(){
+            if (_mousedown) {
+                onResize();
+            }
+        }, false);
+
+        window.addEventListener("mouseup", function(){
+            _mousedown = false;
+        }, false);
+
 		init = true;
 	}
 
@@ -140,8 +130,6 @@ function fluid(elements, min, max) {
 		collection.push(item);
 
 		processItem(item);
-
-		_observer.observe(elem, _config);
 	}
 }
 
