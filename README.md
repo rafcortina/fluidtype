@@ -19,7 +19,7 @@ npm run start
 
 Include the library in your page:
 
-<script type="text/javascript" src="fluidtype.js"></script></body>
+<script type="text/javascript" src="fluidtype.js"></script>
 
 or 
 
