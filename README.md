@@ -26,7 +26,7 @@ or
 require('./fluidtype');
 
 
-To automatically adjust on  drags and window resize on elements:
+Automatically adjust elements on drags and window resize:
 
 fluidtype.start(elements, min, max);
 
