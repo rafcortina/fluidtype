@@ -1,4 +1,5 @@
 # fluidtype
+========================
 
 A library to scale the font size so that text fits optimally inside a container. It handles the window resizing and 
 container resizing.
@@ -9,11 +10,16 @@ None
 
 ### Build
 
+
+```bash
 npm run build
+```
 
 ### Demo
 
-npm run start
+```bash
+$ npm run start
+```
 
 ### How to use
 
