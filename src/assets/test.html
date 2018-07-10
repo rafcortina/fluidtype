@@ -32,7 +32,7 @@
   			Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
   		</div>
 
-  		<div class='fluid-text' contenteditable=true style="top:20%; left:25%; width:50%; height:75%; font-family: cursive;">
+  		<div class='fluid-text' contenteditable=true style="top:20%; left:25%; width:50%; height:65%; font-family: cursive;">
   			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. </p>
 
 			<p>Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. </p> 
@@ -49,9 +49,16 @@
   		<div class='fluid-text' contenteditable=true style="top: 80%; left:5%; width:10%; height:10%; font-style:italic;">
   			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
   		</div>
+
+      <div class='regular-text' contenteditable=true style="top: 92%; left:30%; width:40%; height:8%; font-style:italic;">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      </div>
   </body>
   <script>
   		var elements = document.getElementsByClassName("fluid-text");
-  		fluidtype.fluid(elements, 1, 400);
+  		fluidtype.start(elements, 1, 400);
+
+      var elem = document.getElementsByClassName("regular-text");
+      fluidtype.fluid(elem[0], 1, 200);
   </script>	
 </html>
