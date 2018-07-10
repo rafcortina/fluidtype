@@ -11,12 +11,19 @@ function setOptimalFontSize(elem, minFontSize, maxFontSize)
 
     elem.parentElement.appendChild(helper);
 
-    helper.style.height = "";
-    helper.style.visibility = "hidden";
+    //helper.style.visibility = "hidden";
     helper.style.backgroundColor = "green";
 
     var iterCount = 0;
-    var fontSize = parseInt(getComputedStyle(elem).getPropertyValue("font-size"), 10);
+
+    var computedStyle = getComputedStyle(elem);
+    var fontSize = parseInt(computedStyle.getPropertyValue("font-size"), 10);
+    var checkWidth = false;
+    var whiteSpace = computedStyle.getPropertyValue("white-space");
+    if (whiteSpace !== '' && whiteSpace !== 'normal')
+        checkWidth = true;
+
+
    	if(isNaN(fontSize))
    		fontSize = minFontSize;
 
@@ -24,14 +31,37 @@ function setOptimalFontSize(elem, minFontSize, maxFontSize)
 
    	var helperRect = helper.getClientRects()[0];
 
-    // Increase font size until the height is greater than the target's height.
-    while ((fontSize < maxFontSize) && (helperRect.height <= elemRect.height))
-    {
-    	iterCount += 1;	
-        fontSize += 5;
-        helper.style.fontSize = fontSize + units;
-        helperRect = helper.getClientRects()[0];
+    if (checkWidth) {
+
+        helper.style.width = "";
+
+        // Increase font size until the width is greater than the target's width.
+        while ((fontSize < maxFontSize) && (helperRect.width <= elemRect.width))
+        {
+            iterCount += 1; 
+            fontSize += 5;
+            helper.style.fontSize = fontSize + units;
+            helperRect = helper.getClientRects()[0];
+        }
+
     }
+    else {
+
+        helper.style.height = "";
+
+        // Increase font size until the height is greater than the target's height.
+        while ((fontSize < maxFontSize) && (helperRect.height <= elemRect.height))
+        {
+            iterCount += 1; 
+            fontSize += 5;
+            helper.style.fontSize = fontSize + units;
+            helperRect = helper.getClientRects()[0];
+        }
+    }
+
+    helper.style.width = elem.style.width;
+    helper.style.height = "";
+    helperRect = helper.getClientRects()[0];
 
     // Now we have an upper bound and we decrease the font-size until the height is less or equal to the target's height.
     while ((fontSize > minFontSize) && (helperRect.height > elemRect.height))
@@ -42,24 +72,34 @@ function setOptimalFontSize(elem, minFontSize, maxFontSize)
         helperRect = helper.getClientRects()[0];
     }
 
-    // Now we try to get closer to the height by using smaller increments
-    while ((fontSize > minFontSize) && (helperRect.height < elemRect.height))
-    {
-    	iterCount += 1;		
-        fontSize += 0.1;
-        helper.style.fontSize = fontSize + units;
-        helperRect = helper.getClientRects()[0];
-    }
+    if (checkWidth) {
 
-    fontSize -= 0.1;
-    
-    // Let's make sure the width is not greater than the target's height.
-    while ((fontSize > minFontSize)  && (helperRect.width > elemRect.width))
-    {
-    	iterCount += 1;	
-        fontSize -= 1;
-        helper.style.fontSize = fontSize + units;
+        helper.style.width = "";
+        helper.style.height = elem.style.height;
         helperRect = helper.getClientRects()[0];
+
+        while ((fontSize > minFontSize) && (helperRect.width > elemRect.width))
+        {
+            iterCount += 1;     
+            fontSize -= 1;
+            helper.style.fontSize = fontSize + units;
+            helperRect = helper.getClientRects()[0];
+        }
+    }
+    else {
+
+        helperRect = helper.getClientRects()[0];
+
+        // Now we try to get closer to the height by using smaller increments
+        while ((fontSize > minFontSize) && (helperRect.height < elemRect.height))
+        {
+            iterCount += 1;     
+            fontSize += 0.1;
+            helper.style.fontSize = fontSize + units;
+            helperRect = helper.getClientRects()[0];
+        }
+
+        fontSize -= 0.1;
     }
 
     elem.style.fontSize = fontSize + units;
