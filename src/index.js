@@ -11,7 +11,7 @@ function setOptimalFontSize(elem, minFontSize, maxFontSize)
 
     elem.parentElement.appendChild(helper);
 
-    //helper.style.visibility = "hidden";
+    helper.style.visibility = "hidden";
     helper.style.backgroundColor = "green";
 
     var iterCount = 0;
@@ -181,7 +181,7 @@ function fluid(elem, min, max) {
 
 module.exports = {
     start,
-	fluid,
+	fluid
 };
 
 
