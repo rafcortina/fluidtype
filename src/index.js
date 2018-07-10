@@ -132,7 +132,7 @@ function onResize() {
 
 
 var _mousedown = false;
-function fluid(elements, min, max) {
+function start(elements, min, max) {
 
 	if (!init) {
 		window.addEventListener("resize", onResize);
@@ -173,7 +173,15 @@ function fluid(elements, min, max) {
 	}
 }
 
+function fluid(elem, min, max) {
+
+    processItem({elem: elem, min: min, max: max});
+}
+
 
 module.exports = {
-	fluid
+    start,
+	fluid,
 };
+
+
