@@ -175,7 +175,9 @@ function start(elements, min, max) {
 
 function fluid(elem, min, max) {
 
-    processItem({elem: elem, min: min, max: max});
+    if (elem) {
+        processItem({elem: elem, min: min, max: max});
+    }
 }
 
 
