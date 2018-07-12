@@ -29,14 +29,13 @@ function setOptimalFontSize(elem, minFontSize, maxFontSize)
 
    	helper.style.fontSize = fontSize + units;
 
-   	var helperRect = helper.getClientRects()[0];
-
     if (checkWidth) {
 
         helper.style.width = "";
+        var helperRect = helper.getClientRects()[0];
 
         // Increase font size until the width is greater than the target's width.
-        while ((fontSize < maxFontSize) && (helperRect.width <= elemRect.width))
+        while ((fontSize < maxFontSize) && (helperRect.width < elemRect.width))
         {
             iterCount += 1; 
             fontSize += 5;
@@ -48,9 +47,10 @@ function setOptimalFontSize(elem, minFontSize, maxFontSize)
     else {
 
         helper.style.height = "";
+        var helperRect = helper.getClientRects()[0];
 
         // Increase font size until the height is greater than the target's height.
-        while ((fontSize < maxFontSize) && (helperRect.height <= elemRect.height))
+        while ((fontSize < maxFontSize) && (helperRect.height < elemRect.height))
         {
             iterCount += 1; 
             fontSize += 5;
